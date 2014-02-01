@@ -1,0 +1,49 @@
+ ~~ Licensed to the Apache Software Foundation (ASF) under one
+ ~~ or more contributor license agreements.  See the NOTICE file
+ ~~ distributed with this work for additional information
+ ~~ regarding copyright ownership.  The ASF licenses this file
+ ~~ to you under the Apache License, Version 2.0 (the
+ ~~ "License"); you may not use this file except in compliance
+ ~~ with the License.  You may obtain a copy of the License at
+ ~~
+ ~~   http://www.apache.org/licenses/LICENSE-2.0
+ ~~
+ ~~ Unless required by applicable law or agreed to in writing,
+ ~~ software distributed under the License is distributed on an
+ ~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~~ KIND, either express or implied.  See the License for the
+ ~~ specific language governing permissions and limitations
+ ~~ under the License.
+
+            ------
+            Features
+            ------
+            ------
+             DD.MM.YYYY
+
+Feature List
+
+  * Customizable. Completely controlled by its default.properties which can be easily be overridden by creating a file build.properties and overriding the default properties that are needed.
+  
+  * Multi-threaded. The architecture is that a robot (e.g. HelloCrawler controls various worker (threads) that are doing the actual work.
+  
+  * Honor robots.txt. By default Apache Droids honors the robot.txt. However you can turn on the hostile mode of a droid (droids.protocol.http.force=true).
+  
+  * Crawl throttling. You can configure the amount of concurrent threads that a droid can distribute to their workers (droids.maxThreads=5) and the delay time between the requests (droids.delay.request=500). You can use one of the different delay components:
+  
+    * SimpleDelayTimer
+  
+    * RandomDelayTimer
+     
+    * GaussianRandomDelayTime
+  
+  * Spring based - dynamics. The properties mentioned above get picked up by the build process which inject them in the spring configuration.
+    
+  * Extensible - dynamics. The spring configuration makes usage of the cocoon-configurator and its dynamic registry support (making extending Apache Droids a pleasure).
+
+Architecture
+
+  The following graph shows the basic architecture of Apache Droids with the help of the first implementation (helloCrawler).
+  
+[images/droidsOverview.png] architecture graph
+  

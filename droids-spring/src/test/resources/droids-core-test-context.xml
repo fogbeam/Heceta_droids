@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+  <!-- 
+     Using your own context
+    +++++++++++++++++++++++++ 
+    The easiest way is to 
+    a) create a droids-your-context.xml 
+    b) add:
+       <import resource="classpath:/org/apache/droids/dynamic/droids-core-context.xml"/>
+    c) implement your own beans which will override the imported ones
+    d) Call the ant target like:
+       ant droids.crawl default -Ddroids.spring.context=PATH/droids-your-context.xml
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:configurator="http://cocoon.apache.org/schema/configurator"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://cocoon.apache.org/schema/configurator http://cocoon.apache.org/schema/configurator/cocoon-configurator-1.1.0.xsd">
+  
+  <import resource="classpath:/org/apache/droids/dynamic/droids-core-context.xml"/>
+  
+  <!-- configuration properties file -->
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations" value="classpath:/droids-core.properties"/>
+  </bean>
+  
+  <bean name="taskExceptionHandler"
+    class="org.apache.droids.impl.DefaultTaskExceptionHandler">
+  </bean>
+  
+  <bean name="taskMaster"
+    class="org.apache.droids.impl.MultiThreadedTaskMaster">
+    <property name="exceptionHandler" ref="taskExceptionHandler" />
+    <property name="delayTimer" ref="org.apache.droids.delay.SimpleDelayTimer"/>
+    <!--<property name="maxThreads" value="${droids.maxThreads}"/>-->
+  </bean>
+  
+  <!-- Droids -->
+  <bean name="org.apache.droids.api.Droid/report"
+    class="org.apache.droids.robot.crawler.ReportCrawlingDroid">
+    <constructor-arg ref="java.util.LinkedList" />
+    <constructor-arg ref="taskMaster" />
+    
+    
+    <property name="protocolFactory" ref="org.apache.droids.helper.factories.ProtocolFactory"/>
+    <property name="parserFactory" ref="org.apache.droids.helper.factories.ParserFactory"/>
+    <property name="filtersFactory" ref="org.apache.droids.helper.factories.URLFiltersFactory"/>
+  </bean>
+  <!-- Queue -->
+  <bean id="java.util.LinkedList"
+    class="java.util.LinkedList">
+  </bean>
+  <!-- Protocol -->
+  <bean 
+    name="org.apache.droids.api.Protocol/http"
+    class="org.apache.droids.protocol.http.HttpProtocol" scope="singleton">
+    <property name="userAgent" value="DROIDS-crawler-x-m01y08"/>
+    <property name="forceAllow" value="${droids.protocol.http.force}"/>
+  </bean>
+  <bean name="org.apache.droids.api.Protocol/file"
+    class="org.apache.droids.protocol.file.FileProtocol" scope="singleton"/>
+  <!-- Parser -->
+  <bean 
+    name="text/html"
+    class="org.apache.droids.parse.html.HtmlParser">
+    <property name="elements">
+    <map>
+        <entry key="a" value="href"/>
+        <entry key="link" value="href"/>
+        <entry key="img" value="src"/>
+        <entry key="script" value="src"/>
+     </map>
+     </property>
+    </bean>
+  <!-- Filter -->
+  <bean
+    name="org.apache.droids.api.URLFilter/org.apache.droids.net.RegexURLFilter"
+    class="org.apache.droids.net.RegexURLFilter">
+    <property name="file" value="${droids.filter.regex}"/>
+  </bean>
+  <!-- Handler -->
+  <bean 
+    name="org.apache.droids.api.Handler/org.apache.droids.handle.SysoutHandler"
+    class="org.apache.droids.handle.SysoutHandler"/>
+  <bean 
+    name="org.apache.droids.api.Handler/org.apache.droids.handle.SaveHandler"
+    class="org.apache.droids.handle.SaveHandler">
+    <property name="saveContentHandlerStrategy" 
+    ref="org.apache.droids.api.Handler/org.apache.droids.handle.DefaultSaveContentHandlerStrategy" />
+  </bean>
+  <bean
+    name="org.apache.droids.api.Handler/org.apache.droids.handle.DefaultSaveContentHandlerStrategy"
+    class="org.apache.droids.handle.DefaultSaveContentHandlerStrategy">
+      <property name="includeHost" value="true" />
+      <property name="outputDir" value="tmp/" />
+  </bean>
+
+  
+  <bean 
+    name="org.apache.droids.delay.SimpleDelayTimer"
+    class="org.apache.droids.delay.SimpleDelayTimer">
+    <property name="delayMillis" value="${droids.delay.request}"/>
+  </bean>
+</beans>

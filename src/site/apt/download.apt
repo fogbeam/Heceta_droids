@@ -1,0 +1,56 @@
+ ~~ Licensed to the Apache Software Foundation (ASF) under one
+ ~~ or more contributor license agreements.  See the NOTICE file
+ ~~ distributed with this work for additional information
+ ~~ regarding copyright ownership.  The ASF licenses this file
+ ~~ to you under the Apache License, Version 2.0 (the
+ ~~ "License"); you may not use this file except in compliance
+ ~~ with the License.  You may obtain a copy of the License at
+ ~~
+ ~~   http://www.apache.org/licenses/LICENSE-2.0
+ ~~
+ ~~ Unless required by applicable law or agreed to in writing,
+ ~~ software distributed under the License is distributed on an
+ ~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~~ KIND, either express or implied.  See the License for the
+ ~~ specific language governing permissions and limitations
+ ~~ under the License.
+
+            ------
+            Download
+            ------
+            ------
+             DD.MM.YYYY
+
+Download
+
+  Download source below Apache Droids 0.2.0-incubating 
+  
+  * {{{http://www.apache.org/dyn/closer.cgi/incubator/droids/0.2.0-incubating/apache-droids-0.2-incubating-source-release.zip}Source code}} (ZIP archive)
+  
+  * {{{http://www.apache.org/dist/incubator/droids/0.2.0-incubating/droids-0.2.0-incubating-source-release.zip.asc}ASC Signature}}
+  
+  []
+
+  Binary releases are available from Maven Central.
+  
+==============================================
+
+  When downloading from a mirror please check the SHA1 checksums as well as verifying the OpenPGP compatible signature available from the main Apache site. The KEYS file contains the public keys used for signing release. It is recommended that a web of trust is used to confirm the identity of these keys.
+
+  You can check the OpenPGP signature with:
+
+------------------------------------------
+gpg --verify droids-*.zip.asc
+------------------------------------------
+  
+  You can check the SHA-512 checksum with:
+
+------------------------------------------
+sha512sum droids-*.zip.gz
+------------------------------------------
+
+  You can check the MD5 checksum with:
+
+------------------------------------------
+md5sum droids-*.zip.gz
+------------------------------------------

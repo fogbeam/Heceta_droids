@@ -1,0 +1,46 @@
+ ~~ Licensed to the Apache Software Foundation (ASF) under one
+ ~~ or more contributor license agreements.  See the NOTICE file
+ ~~ distributed with this work for additional information
+ ~~ regarding copyright ownership.  The ASF licenses this file
+ ~~ to you under the Apache License, Version 2.0 (the
+ ~~ "License"); you may not use this file except in compliance
+ ~~ with the License.  You may obtain a copy of the License at
+ ~~
+ ~~   http://www.apache.org/licenses/LICENSE-2.0
+ ~~
+ ~~ Unless required by applicable law or agreed to in writing,
+ ~~ software distributed under the License is distributed on an
+ ~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~~ KIND, either express or implied.  See the License for the
+ ~~ specific language governing permissions and limitations
+ ~~ under the License.
+
+            ------
+            Apache Droids
+            ------
+            ------
+             DD.MM.YYYY
+
+Apache Droids (Incubating)
+
+  Apache Droids aims to be an intelligent standalone robot framework that allows to create and extend existing droids (robots). In the future it will offer an administration application to manage and controll the different droids.
+
+  Apache Droids makes it very easy to extend existing robots or write a new one from scratch, which can automatically seek out relevant online information based on the user's specifications.
+
+  Apache Droids (plural) is not designed for a special usecase, it is a framework: <<Take what you need, do what you want>>.
+
+  Apache Droids offers you following the components so far:
+
+    * Queue, a queue is the data structure where the different tasks are waiting for service.
+    
+    * Protocol, the protocol interface is a wrapper to hide the underlying implementation of the communication at protocol level.
+    
+    * Parser -> Apache Tika, the parser component is just a wrapper for Apache Tika since it offers everything we need. No need to duplicate the effort. The Paser component parses different input types to SAX events.
+    
+    * Handler, a handler is a component that uses the original stream and/or the parse (ContentHandler coming from Apache Tika) and the url to invoke arbitrary business logic on the objects. Unless like the other components different handler can be applied on the stream/parse
+
+  A Droid (singular) however is all about <<ONE special usecase>>. For example the helloCrawler is a wget style crawler. Meaning you go to a page extract the links and save the page afterward to the file system. The focus of the helloCrawler is this special usecase and to solve it hello uses different components.
+
+  In the future there could evolve different subprojects that are providing specialist components for a special use case. However if components get used in different usecases they should be considered common.
+
+  Apache Droids is currently undergoing Incubation at the Apache Software Foundation.

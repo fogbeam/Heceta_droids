@@ -1,0 +1,35 @@
+Index
+======
+Indexing a Website (not the whole web)
+Indexing Filessytems (local, remote)
+Indexing Social Networks
+
+Parse
+======
+extract content
+extract links
+extract metadata
+
+Filter
+======
+Regex Rules
+History
+
+Handler
+=======
+solr
+database
+
+Monitoring
+==========
+Logging
+
+
+Managing Tasks
+==============
+Failure Detection
+Removing tasks
+
+Finishing Tasks
+===============
+solr commit

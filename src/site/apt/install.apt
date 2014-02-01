@@ -1,0 +1,69 @@
+ ~~ Licensed to the Apache Software Foundation (ASF) under one
+ ~~ or more contributor license agreements.  See the NOTICE file
+ ~~ distributed with this work for additional information
+ ~~ regarding copyright ownership.  The ASF licenses this file
+ ~~ to you under the Apache License, Version 2.0 (the
+ ~~ "License"); you may not use this file except in compliance
+ ~~ with the License.  You may obtain a copy of the License at
+ ~~
+ ~~   http://www.apache.org/licenses/LICENSE-2.0
+ ~~
+ ~~ Unless required by applicable law or agreed to in writing,
+ ~~ software distributed under the License is distributed on an
+ ~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~~ KIND, either express or implied.  See the License for the
+ ~~ specific language governing permissions and limitations
+ ~~ under the License.
+
+            ------
+            Installation
+            ------
+            ------
+             DD.MM.YYYY
+
+Installation Guide
+
+* Prerequisites
+
+  Before starting to work with Apache Droids you need to install
+
+--------------------
+jdk >= 1.6
+maven >= 3.0.3
+--------------------
+
+
+* Download
+
+  First of all create a new directory and download the sources:
+
+--------------------------------
+cd {YOUR WORKSPACE DIR}
+svn co https://svn.apache.org/repos/asf/incubator/droids/trunk apache-droids
+cd apache-droids
+--------------------------------
+
+
+* Build
+
+  Create a distribution (all components of Apache Droids will be build) and install them to your local maven repository (usually ~/.m2/repository) with the following command.
+
+-------------------
+mvn clean install
+-------------------
+
+
+* Eclipse Integration
+
+  For working with eclipse you can ether use the maven eclipse plugin or the eclipse {{{http://www.eclipse.org/m2e/}Maven Integration m2e}}
+
+  For the maven eclipse plugin run the following command from your Apache Droids root folder
+  
+------------------
+mvn eclipse:clean eclipse:eclipse
+------------------  
+
+
+Get Started
+
+  Now you have successully set up Apache Droids, you can follow {{{./getting-started.html}some examples}}.
